@@ -1,0 +1,79 @@
+{
+  "appName": "EnglishPro UZ",
+  "tagline": "0 dan IELTS 9.0 gacha — O'zbek tilidagi eng mukammal AI ta'lim platformasi",
+  "nav": {
+    "home": "Bosh sahifa",
+    "dashboard": "Dashboard",
+    "lessons": "Darslar",
+    "practice": "Mashqlar",
+    "vocabulary": "Lug‘at",
+    "grammar": "Grammatika",
+    "pronounce": "Talaffuz",
+    "speaking": "Gapirish",
+    "listening": "Tinglash",
+    "writing": "Yozish",
+    "ai_tutor": "AI Ustoz",
+    "tests": "Testlar",
+    "ielts": "IELTS",
+    "results": "Mening natijalarim",
+    "settings": "Sozlamalar",
+    "login": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "logout": "Chiqish",
+    "admin": "Admin Panel"
+  },
+  "hero": {
+    "badge": "0 dan IELTS 9.0 gacha tayyorgarlik platformasi",
+    "title": "0 dan IELTS 9.0 gacha ingliz tilini o‘rganing",
+    "subtitle": "AI ustoz, video darslar, interaktiv mashqlar va real suhbatlar orqali ingliz tilini oson o‘rganing.",
+    "startBtn": "Boshlash",
+    "placementBtn": "Darajamni aniqlash",
+    "aiChatBtn": "AI Ustoz bilan gaplashish",
+    "studentsCount": "50,000+ o'quvchilar",
+    "ieltsAvg": "8.5+ IELTS tayyorgarligi",
+    "uzbSupport": "100% O'zbekcha tushuntirish"
+  },
+  "dashboard": {
+    "greeting": "Salom",
+    "todayGoal": "Bugungi maqsad",
+    "todayGoalSub": "Bugun 20 daqiqa o‘rganing",
+    "streak": "kunlik streak",
+    "xp": "XP",
+    "level": "Daraja",
+    "quickPractice": "5 daqiqalik mashq",
+    "wordOfTheDay": "Bugungi so'z",
+    "todayPlan": "Bugungi vazifalar",
+    "continueLearning": "Darsni davom ettirish",
+    "weakTopic": "Tavsiya: Ushbu mavzuni ko'proq takrorlang",
+    "weeklyProgress": "Haftalik o'sish dinamikasi"
+  },
+  "ai": {
+    "tutorName": "Ustoz AI",
+    "tutorRole": "Shaxsiy ingliz tili o'qituvchisi",
+    "inputPlaceholder": "Inglizcha xabaringizni yozing yoki mikrofondan foydalaning...",
+    "listening": "Sizni tinglamoqdaman, gapiring...",
+    "send": "Yuborish",
+    "correctionTitle": "Grammatika & Leksika tahlili",
+    "correctVariant": "To'g'ri variant",
+    "reason": "Sababi",
+    "showUzbek": "Tarjimani ko'rish (UZ)",
+    "showEnglish": "Inglizchani ko'rish",
+    "clearChat": "Tozalash",
+    "maleVoice": "Erkak AI Ovozi"
+  },
+  "ielts": {
+    "title": "IELTS 9.0 Darajasiga Tayyorgarlik Simulyatori",
+    "disclaimer": "Eslatma: Natijalar o'quv mashg'uloti uchun taxminiy baholash bo'lib, rasmiy IELTS sertifikati hisoblanmaydi.",
+    "reading": "Reading",
+    "listening": "Listening",
+    "writing": "Writing",
+    "speaking": "Speaking",
+    "submitTest": "Testni topshirish",
+    "timeRemaining": "Qolgan vaqt"
+  },
+  "pwa": {
+    "installApp": "Ilovani o'rnatish",
+    "unsupported": "Brauzer menyusidan 'Add to Home Screen' ni tanlang.",
+    "offlineNotice": "Siz hozir offline rejimdasiz. Saqlangan lug'at va darslar mavjud."
+  }
+}

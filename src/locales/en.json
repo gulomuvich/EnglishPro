@@ -1,0 +1,79 @@
+{
+  "appName": "EnglishPro UZ",
+  "tagline": "From 0 to IELTS 9.0 — The Complete AI English Learning Platform",
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "lessons": "Lessons",
+    "practice": "Practice",
+    "vocabulary": "Vocabulary",
+    "grammar": "Grammar",
+    "pronounce": "Pronounce",
+    "speaking": "Speaking",
+    "listening": "Listening",
+    "writing": "Writing",
+    "ai_tutor": "AI Teacher",
+    "tests": "Tests",
+    "ielts": "IELTS",
+    "results": "My Results",
+    "settings": "Settings",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "admin": "Admin Panel"
+  },
+  "hero": {
+    "badge": "0 to IELTS 9.0 Preparation System",
+    "title": "Learn English from 0 to IELTS 9.0",
+    "subtitle": "Learn English effortlessly through an AI tutor, video lessons, interactive drills, and realistic spoken conversations.",
+    "startBtn": "Get Started",
+    "placementBtn": "Take Placement Test",
+    "aiChatBtn": "Talk to AI Teacher",
+    "studentsCount": "50,000+ active learners",
+    "ieltsAvg": "8.5+ IELTS Prep",
+    "uzbSupport": "100% Uzbek Support"
+  },
+  "dashboard": {
+    "greeting": "Hello",
+    "todayGoal": "Today's Goal",
+    "todayGoalSub": "Study for 20 minutes today",
+    "streak": "day streak",
+    "xp": "XP",
+    "level": "Level",
+    "quickPractice": "5-Min Quick Drill",
+    "wordOfTheDay": "Word of the Day",
+    "todayPlan": "Daily Tasks",
+    "continueLearning": "Continue Learning",
+    "weakTopic": "Recommendation: Focus on this topic",
+    "weeklyProgress": "Weekly Progress Chart"
+  },
+  "ai": {
+    "tutorName": "Ustoz AI",
+    "tutorRole": "Personal English Tutor",
+    "inputPlaceholder": "Type in English or tap the microphone to speak...",
+    "listening": "Listening to you, please speak...",
+    "send": "Send",
+    "correctionTitle": "Grammar & Lexical Analysis",
+    "correctVariant": "Correct variant",
+    "reason": "Explanation",
+    "showUzbek": "Show Translation (UZ)",
+    "showEnglish": "Show English",
+    "clearChat": "Clear Chat",
+    "maleVoice": "Male AI Voice"
+  },
+  "ielts": {
+    "title": "IELTS 9.0 Preparation Simulator",
+    "disclaimer": "Note: Scores are diagnostic practice estimates and do not constitute an official IELTS certificate.",
+    "reading": "Reading",
+    "listening": "Listening",
+    "writing": "Writing",
+    "speaking": "Speaking",
+    "submitTest": "Submit Test",
+    "timeRemaining": "Time Remaining"
+  },
+  "pwa": {
+    "installApp": "Install App",
+    "unsupported": "Choose 'Add to Home Screen' from your browser menu.",
+    "offlineNotice": "You are currently offline. Cached vocabulary and lessons are accessible."
+  }
+}

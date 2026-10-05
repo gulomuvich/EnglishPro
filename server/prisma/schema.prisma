@@ -1,0 +1,297 @@
+// Prisma Schema for English Master AI (PostgreSQL)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum ProficiencyLevel {
+  ZERO
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
+  IELTS_4_5
+  IELTS_6_0
+  IELTS_7_0
+  IELTS_8_0
+  IELTS_9_0
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  name         String
+  role         Role      @default(STUDENT)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  profile        Profile?
+  userVocabularies UserVocabulary[]
+  progress       Progress[]
+  streaks        Streak?
+  achievements   UserAchievement[]
+  conversations  Conversation[]
+  mistakes       Mistake[]
+  speakingResults SpeakingResult[]
+  writingResults WritingResult[]
+  notifications  Notification[]
+  subscriptions  Subscription[]
+  exerciseAnswers ExerciseAnswer[]
+}
+
+model Profile {
+  id               String           @id @default(uuid())
+  userId           String           @unique
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  avatar           String?
+  currentLevel     ProficiencyLevel @default(ZERO)
+  targetLevel      ProficiencyLevel @default(IELTS_9_0)
+  targetExamDate   DateTime?
+  dailyGoalMinutes Int              @default(20)
+  preferredVoice   String           @default("male")
+  reminderTime     String           @default("19:00")
+  reminderEnabled  Boolean          @default(true)
+  nativeLanguage   String           @default("uz")
+  xp               Int              @default(0)
+}
+
+model Level {
+  id          String           @id @default(uuid())
+  code        ProficiencyLevel @unique
+  titleUz     String
+  titleEn     String
+  order       Int
+  description String
+  lessons     Lesson[]
+}
+
+model Lesson {
+  id          String   @id @default(uuid())
+  levelId     String
+  level       Level    @relation(fields: [levelId], references: [id])
+  title       String
+  description String
+  order       Int
+  durationMin Int      @default(15)
+  xpReward    Int      @default(20)
+
+  videos      Video[]
+  exercises   Exercise[]
+  progress    Progress[]
+}
+
+model Video {
+  id          String   @id @default(uuid())
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  title       String
+  youtubeId   String
+  duration    String
+  transcript  String?
+  sourceUrl   String?
+  attribution String?
+}
+
+model Vocabulary {
+  id             String           @id @default(uuid())
+  word           String           @unique
+  translationUz  String
+  ipa            String
+  partOfSpeech   String
+  exampleEn      String
+  exampleUz      String
+  audioUrl       String?
+  level          ProficiencyLevel @default(A1)
+
+  userVocabularies UserVocabulary[]
+}
+
+model UserVocabulary {
+  id              String     @id @default(uuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabularyId    String
+  vocabulary      Vocabulary @relation(fields: [vocabularyId], references: [id], onDelete: Cascade)
+  repetitionStage Int        @default(1) // 1: Today, 2: 3 days, 3: 7 days, 4: 14 days, 5: 30 days
+  nextReviewAt    DateTime   @default(now())
+  learned         Boolean    @default(false)
+
+  @@unique([userId, vocabularyId])
+}
+
+model GrammarTopic {
+  id           String     @id @default(uuid())
+  title        String
+  category     String
+  level        ProficiencyLevel
+  ruleSummaryUz String
+  explanationUz String
+  examplesJson String
+  exercises    Exercise[]
+}
+
+model Exercise {
+  id             String        @id @default(uuid())
+  lessonId       String?
+  lesson         Lesson?       @relation(fields: [lessonId], references: [id])
+  grammarTopicId String?
+  grammarTopic   GrammarTopic? @relation(fields: [grammarTopicId], references: [id])
+  type           String        // multiple_choice, fill_blank, pronunciation, reorder
+  question       String
+  optionsJson    String?
+  correctAnswer  String
+  explanationUz  String
+
+  answers        ExerciseAnswer[]
+}
+
+model ExerciseAnswer {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exerciseId  String
+  exercise    Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  userAnswer  String
+  isCorrect   Boolean
+  createdAt   DateTime @default(now())
+}
+
+model Progress {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completed   Boolean  @default(false)
+  score       Int      @default(0)
+  completedAt DateTime @default(now())
+
+  @@unique([userId, lessonId])
+}
+
+model Streak {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentDays Int      @default(1)
+  longestDays Int      @default(1)
+  lastActive  DateTime @default(now())
+}
+
+model Achievement {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  titleUz     String
+  description String
+  badgeIcon   String
+  xpReward    Int
+
+  users       UserAchievement[]
+}
+
+model UserAchievement {
+  id            String      @id @default(uuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  unlockedAt    DateTime    @default(now())
+
+  @@unique([userId, achievementId])
+}
+
+model Conversation {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mode      String    @default("casual") // casual, interview, travel, academic, ielts
+  createdAt DateTime  @default(now())
+  messages  Message[]
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         String       // "user" or "ai"
+  content        String
+  translationUz  String?
+  correctionUz   String?
+  createdAt      DateTime     @default(now())
+}
+
+model Mistake {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  incorrect   String
+  corrected   String
+  ruleUz      String
+  topic       String
+  repeatedCount Int    @default(1)
+  resolved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model SpeakingResult {
+  id             String   @id @default(uuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetPhrase   String
+  recognizedText String
+  scorePercent   Int
+  ipaExpected    String?
+  feedbackUz     String
+  createdAt      DateTime @default(now())
+}
+
+model WritingResult {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskType        String   // ielts_task_1, ielts_task_2, quick_essay
+  prompt          String
+  userEssay       String
+  estimatedBand   Float
+  taskResponse    Float
+  coherence       Float
+  lexicalResource Float
+  grammarAccuracy Float
+  detailedReview  String
+  createdAt       DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phone     String
+  sendTime  String   // e.g., "19:00"
+  type      String   @default("daily_reminder")
+  sent      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Subscription {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      String   @default("free") // free, pro, premium_ielts
+  active    Boolean  @default(true)
+  expiresAt DateTime?
+}

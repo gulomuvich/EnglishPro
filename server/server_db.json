@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "id": "usr_demo_1",
+      "name": "Ali Valiyev",
+      "email": "ali@example.com",
+      "phone": "+998901234567",
+      "password": "password123",
+      "level": "A2",
+      "targetLevel": "IELTS 9.0",
+      "xp": 1250,
+      "streakDays": 7,
+      "dailyGoalMin": 20
+    }
+  ],
+  "reminders": [
+    {
+      "id": "rem_1790354725802",
+      "phone": "+998 941935777",
+      "reminderTime": "22:00",
+      "status": "ACTIVE_SCHEDULED",
+      "provider": "Eskiz / Twilio SMS Gateway",
+      "message": "[English Master AI] Salom! Bugungi 20 daqiqalik dars vaqti bo'ldi (22:00). IELTS 9.0 maqsadiga yana bir qadam tashlang!",
+      "scheduledAt": "2026-09-25T16:45:25.802Z"
+    },
+    {
+      "id": "rem_1790354726906",
+      "phone": "+998 941935777",
+      "reminderTime": "22:00",
+      "status": "ACTIVE_SCHEDULED",
+      "provider": "Eskiz / Twilio SMS Gateway",
+      "message": "[English Master AI] Salom! Bugungi 20 daqiqalik dars vaqti bo'ldi (22:00). IELTS 9.0 maqsadiga yana bir qadam tashlang!",
+      "scheduledAt": "2026-09-25T16:45:26.906Z"
+    }
+  ],
+  "mistakes": [],
+  "progress": {}
+}
